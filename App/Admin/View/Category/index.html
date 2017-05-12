@@ -1,0 +1,62 @@
+<include file="Public/header" title="栏目管理" />
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span> 栏目管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+        <span class="l">
+            <a class="btn btn-primary radius" onclick="system_category_add('添加栏目','{:U('Category/add')}')" href="javascript:;">
+                <i class="Hui-iconfont">&#xe600;</i> 添加栏目
+            </a>
+        </span>
+        <span class="r">共有数据：<strong>{:count($model)}</strong> 条</span> </div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-hover table-bg table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="80">ID</th>
+					<th width="80">排序</th>
+					<th>栏目名称</th>
+					<th width="100">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="model" id="mo">
+				<tr class="text-c">
+					<td>1</td>
+					<td>1</td>
+					<td class="text-l">{$mo.html} {$mo.name}</td>
+					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{:U("Category/update",array("id"=>$mo["id"]))}','{$mo.id}','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="article_category_del(this,'{$mo.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/admin/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/admin/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/admin/static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/admin/static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript">
+/*系统-栏目-添加*/
+function system_category_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*系统-栏目-编辑*/
+function system_category_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*系统-栏目-删除*/
+function article_category_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+        $.get('{:U("Category/delete")}',{id:id},function(data){
+            if(data.status == 1){
+                $(obj).parents("tr").remove();
+                layer.msg(data.info,{icon:1,time:1000});
+            }else{
+                layer.msg(data.info,{icon:2,time:1000});
+            }
+        });
+
+    });
+}
+</script>
+<include file="Public/footer" />

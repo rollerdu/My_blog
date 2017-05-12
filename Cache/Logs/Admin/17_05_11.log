@@ -1,0 +1,6 @@
+[ 2017-05-11T17:13:14+08:00 ] 127.0.0.1 /login/login.html
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2017-05-11T17:13:20+08:00 ] 127.0.0.1 /login/login.html
+ERR: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+
