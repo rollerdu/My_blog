@@ -71,8 +71,6 @@ class IndexController extends BaseLoginController{
         $this->display();
     }
 
-
-
     public function message(){
         if(cookie('message') >10) $this->error('今天留言机会已用光，请明天再来哦！');
         $data['artid'] = intval(I("param.art_id"));
